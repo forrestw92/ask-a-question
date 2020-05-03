@@ -26,6 +26,7 @@ export class QuestionService {
             id: uuid(),
             createdAt: now.toISOString(),
             name,
+            answers: [],
         });
         return await this.questionRepository.save(question);
     }

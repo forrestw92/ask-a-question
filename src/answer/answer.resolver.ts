@@ -6,6 +6,7 @@ import { CreateAnswerInput } from './answer.input';
 @Resolver(of => AnswerType)
 export class AnswerResolver {
     constructor(private answerService: AnswerService) {}
+
     @Mutation(returns => AnswerType)
     createAnswer(
         @Args('createAnswerInput') createAnswerInput: CreateAnswerInput,
@@ -15,7 +16,7 @@ export class AnswerResolver {
 
     @Query(returns => [AnswerType])
     answers() {
-        return this.answerService.getMany();
+        return this.answerService.getAnswers();
     }
 
     @Query(returns => AnswerType)

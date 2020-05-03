@@ -13,4 +13,7 @@ export class Question {
 
     @Column()
     createdAt: string;
+
+    @Column()
+    answers: string[];
 }
