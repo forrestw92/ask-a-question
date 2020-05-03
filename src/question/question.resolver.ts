@@ -12,6 +12,7 @@ import { CreateQuestionInput } from './question.input';
 import { Question } from './question.entity';
 import { AnswerService } from '../answer/answer.service';
 import { AnswerType } from '../answer/answer.type';
+import { FindQuestionInput } from './find-question.input';
 
 @Resolver(of => QuestionType)
 export class QuestionResolver {
@@ -26,8 +27,11 @@ export class QuestionResolver {
     }
 
     @Query(returns => [QuestionType])
-    questions() {
-        return this.questionService.getMany();
+    questions(
+        @Args('findQuestionInput', { nullable: true })
+        findQuestionInput: FindQuestionInput,
+    ) {
+        return this.questionService.getMany(findQuestionInput);
     }
 
     @Mutation(returns => QuestionType)

@@ -20,4 +20,7 @@ export class QuestionType {
 
     @Field()
     downVotes: number;
+
+    @Field(type => [String])
+    tags: string[];
 }

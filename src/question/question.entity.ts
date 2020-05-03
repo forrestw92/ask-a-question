@@ -1,6 +1,7 @@
-import { Column, Entity, ObjectIdColumn, PrimaryColumn } from 'typeorm';
+import { Column, Entity, Index, ObjectIdColumn, PrimaryColumn } from 'typeorm';
 
 @Entity()
+@Index('text', ['name'], { fulltext: true })
 export class Question {
     @ObjectIdColumn()
     _id: string;
@@ -22,4 +23,7 @@ export class Question {
 
     @Column()
     downVotes: number;
+
+    @Column()
+    tags: string[];
 }
