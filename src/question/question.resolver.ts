@@ -8,11 +8,11 @@ export class QuestionResolver {
     constructor(private questionService: QuestionService) {}
 
     @Query(returns => QuestionType)
-    question(id: string) {
+    question(@Args('id') id: string) {
         return this.questionService.findOne(id);
     }
 
-    @Query(returns => QuestionType)
+    @Query(returns => [QuestionType])
     questions() {
         return this.questionService.getMany();
     }
