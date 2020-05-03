@@ -11,6 +11,7 @@ import { QuestionService } from './question.service';
 import { CreateQuestionInput } from './question.input';
 import { Question } from './question.entity';
 import { AnswerService } from '../answer/answer.service';
+import { AnswerType } from '../answer/answer.type';
 
 @Resolver(of => QuestionType)
 export class QuestionResolver {
@@ -34,6 +35,16 @@ export class QuestionResolver {
         @Args('createQuestionInput') createQuestionInput: CreateQuestionInput,
     ) {
         return this.questionService.createQuestion(createQuestionInput);
+    }
+
+    @Mutation(returns => QuestionType)
+    upVote(@Args('id') id: string) {
+        return this.questionService.upVoteQuestion(id);
+    }
+
+    @Mutation(returns => QuestionType)
+    downVote(@Args('id') id: string) {
+        return this.questionService.downVoteQuestion(id);
     }
 
     @ResolveField()

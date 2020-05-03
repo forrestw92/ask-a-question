@@ -16,4 +16,10 @@ export class Question {
 
     @Column()
     answers: string[];
+
+    @Column()
+    upVotes: number;
+
+    @Column()
+    downVotes: number;
 }

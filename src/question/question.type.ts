@@ -14,4 +14,10 @@ export class QuestionType {
 
     @Field(type => [AnswerType])
     answers: string[];
+
+    @Field()
+    upVotes: number;
+
+    @Field()
+    downVotes: number;
 }
