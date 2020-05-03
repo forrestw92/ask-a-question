@@ -13,4 +13,10 @@ export class Answer {
 
     @Column()
     createdAt: string;
+
+    @Column()
+    upVotes: number;
+
+    @Column()
+    downVotes: number;
 }

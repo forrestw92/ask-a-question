@@ -10,4 +10,10 @@ export class AnswerType {
 
     @Field()
     createdAt: string;
+
+    @Field()
+    upVotes: number;
+
+    @Field()
+    downVotes: number;
 }

@@ -31,6 +31,18 @@ export class AnswerService {
         });
     }
 
+    async upvoteAnswer(id: string): Promise<Answer> {
+        const answer = await this.answerRepository.findOne({ id });
+        answer.upVotes = answer.upVotes + 1;
+        return this.answerRepository.save(answer);
+    }
+
+    async downVoteAnswer(id: string): Promise<Answer> {
+        const answer = await this.answerRepository.findOne({ id });
+        answer.downVotes = answer.downVotes - 1;
+        return this.answerRepository.save(answer);
+    }
+
     async createAnswer(createAnswerInput: CreateAnswerInput): Promise<Answer> {
         const { answer, questionId } = createAnswerInput;
         const now = new Date();
@@ -40,6 +52,8 @@ export class AnswerService {
         const newAnswer = await this.answerRepository.create({
             answer,
             createdAt: now.toISOString(),
+            upVotes: 0,
+            downVotes: 0,
             id: uuid(),
         });
         question.answers = [...question.answers, newAnswer.id];

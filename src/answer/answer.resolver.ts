@@ -14,6 +14,16 @@ export class AnswerResolver {
         return this.answerService.createAnswer(createAnswerInput);
     }
 
+    @Mutation(returns => AnswerType)
+    upVote(@Args('id') id: string) {
+        return this.answerService.upvoteAnswer(id);
+    }
+
+    @Mutation(returns => AnswerType)
+    downVote(@Args('id') id: string) {
+        return this.answerService.downVoteAnswer(id);
+    }
+
     @Query(returns => [AnswerType])
     answers() {
         return this.answerService.getAnswers();
