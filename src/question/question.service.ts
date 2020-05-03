@@ -10,7 +10,10 @@ export class QuestionService {
         @InjectRepository(Question)
         private questionRepository: Repository<Question>,
     ) {}
-    async getMany() {
+    async findOne(id: string): Promise<Question> {
+        return this.questionRepository.findOne({ id });
+    }
+    async getMany(): Promise<Question[]> {
         return this.questionRepository.find();
     }
 

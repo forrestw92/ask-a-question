@@ -6,10 +6,17 @@ import { CreateQuestionInput } from './question.input';
 @Resolver(of => QuestionType)
 export class QuestionResolver {
     constructor(private questionService: QuestionService) {}
+
+    @Query(returns => QuestionType)
+    question(id: string) {
+        return this.questionService.findOne(id);
+    }
+
     @Query(returns => QuestionType)
     questions() {
         return this.questionService.getMany();
     }
+
     @Mutation(returns => QuestionType)
     createQuestion(
         @Args('createQuestionInput') createQuestionInput: CreateQuestionInput,
